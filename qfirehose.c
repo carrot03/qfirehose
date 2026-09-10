@@ -121,6 +121,7 @@ static void usage(int status, const char *program_name)
         dbg_time("    -n                             Skip MD5 check\n");
         dbg_time("    -d                             Device Type, default nand, support emmc/ufs\n");
         dbg_time("    -v                             For AG215S-GLR signed firmware packages\n");
+        dbg_time("    -V                             Display version information\n");
     }
     exit(status);
 }
@@ -324,7 +325,7 @@ int main(int argc, char* argv[])
 #endif
 
     optind = 1;
-    while ( -1 != (opt = getopt(argc, argv, "f:p:z:s:l:u:d:nevh"))) {
+    while ( -1 != (opt = getopt(argc, argv, "f:p:z:s:l:u:d:nevhV"))) {
         switch (opt) {
             case 'n':
                 check_hash = 0;
@@ -388,6 +389,10 @@ int main(int argc, char* argv[])
             break;
             case 'h':
                 usage(EXIT_SUCCESS, argv[0]);
+            break;
+            case 'V':
+                // dbg_time("Version: QFirehose_Linux_Android_V1.4.17\n"); // doesn't print version info in this case, because it has been printed before
+                exit(EXIT_SUCCESS);
             break;
             default:
             break;
