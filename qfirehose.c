@@ -943,7 +943,7 @@ static int msg_send(int msgid, long type, const char *msg)
     snprintf(info.mtext, MSGBUFFSZ, "%s", msg);
     if (msgsnd(msgid, (void *)&info, MSGBUFFSZ, IPC_NOWAIT) < 0)
     {
-        dbg_time("msgsnd faild: msg %s, %s\n", msg, strerror(errno));
+        dbg_time("msgsnd failed: msg %s, %s\n", msg, strerror(errno));
         return -1;
     }
     return 0;
@@ -953,7 +953,7 @@ static int msg_recv(int msgid, struct message *info)
 {
     if (msgrcv(msgid, (void *)info, MSGBUFFSZ, info->mtype, IPC_NOWAIT) < 0)
     {
-        dbg_time("msgrcv faild: type %ld, %s\n", info->mtype, strerror(errno));
+        dbg_time("msgrcv failed: type %ld, %s\n", info->mtype, strerror(errno));
         return -1;
     }
     return 0;
